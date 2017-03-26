@@ -61,14 +61,47 @@ With the JiBX binding compiler we need to compile the bindings into the class fi
 2. Run the following command to compile the bindings:
 
     `java -jar /Users/directory/path/jibx/lib/jibx-bind.jar -v /Users/directory/path/for/yourService/binding.xml`
-3. This will generate several class prefixed with `JiBX_binding...` in `/Users/directory/path/for/yourService/build/classes`.
+3. This will generate several class files prefixed with `JiBX_binding...` in `/Users/directory/path/for/yourService/build/classes`.
 4. Re-run the Ant task again as explained in Step 2 above. The generated jar file will have the bindings included.
 
 
 ### Step 4: Create Client with needed Dependencies
 
+If you check the `src` directory */Users/directory/path/for/yourService/src/com/yourCompany/axis2/jibx/packageName* you will have an interface for your webservice and a stub implementation. Example *YourService.java* and *YourServiceStub.java*.
+The client can be created using the interface and implementation.
 
+```java
+import com.yourCompany.axis2.jibx.packageName.YourService;
+import com.yourCompany.axis2.jibx.packageName.YourServiceStub;
 
+public class YourServiceClient {
+    private YourService service = new YourServiceStub();
+
+    public void doSomething() {
+        service.callSomething();
+    }
+```
+
+The client needs several of the Axis2 and JiBX jars to run. You may want to either include the jars with your client or declare dependency on them. Here is a snippet of Grails dependency declaration for a client created using Axis2 1.7.4 and JiBX 1.3.1
+```
+        runtime ('org.apache.ws.commons.axiom:axiom-api:1.2.20',
+                'org.apache.ws.commons.axiom:axiom-dom:1.2.20',
+                'org.apache.ws.commons.axiom:axiom-impl:1.2.20',
+                'org.apache.axis2:axis2-transport-local:1.7.4',
+                'org.apache.axis2:axis2-transport-http:1.7.4',
+                'commons-httpclient:commons-httpclient:3.1',
+                'wsdl4j:wsdl4j:1.6.2',
+                'org.apache.ws.commons.schema:XmlSchema:1.4.7',
+                'org.apache.neethi:neethi:3.0.3',
+                'javax.mail:mail:1.4',
+                'org.apache.httpcomponents:httpcore:4.4.4',
+                'org.apache.woden:woden-core:1.0M10',
+                'org.apache.axis2:axis2-jibx:1.7.4',
+                'org.jibx:jibx-run:1.3.1',
+                'xpp3:xpp3:1.1.4c') {
+            transitive = false
+        }
+```
 
 ## Reference
 * [Axis2 WSDL2Java Reference](https://axis.apache.org/axis2/java/core/docs/reference.html)
