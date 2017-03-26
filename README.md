@@ -44,7 +44,7 @@ that is needed for Step 2.
 4. This generates *binding.xml* file and java classes in the directory */Users/directory/path/for/yourService/com/yourCompany/axis2/jibx/packageName*.
 
 ### Step 2: Axis2 WSDL2Java
-The steps below will generate the stub needed to create the java client for the web service. Axis2 needs the java classes generated from the previous step to create the stub.
+The steps below will generate the stub needed to create the java client for the web service. Axis2 needs the *binding.xml* file generated from the previous step for creating the stub.
 1. Download the binary distribution of the latest version of [Axis2 1.7.4](http://axis.apache.org/axis2/java/core/download.html) and Unzip the contents.
 2. Navigate to the `bin` directory and run the [`wsdl2java`](https://axis.apache.org/axis2/java/core/docs/reference.html) command.
 
