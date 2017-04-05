@@ -1,7 +1,5 @@
 # Axis2JiBXClient
 You want to generate a Java client for a WebService from its WSDL file. This documentation gives you the step by step instructions.
- 
-#### WORK IN PROGRESS
 
 ## Types of Axis2 Clients
 With Axis2 you can generate clients using 3 types of bindings.
